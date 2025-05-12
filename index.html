@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排序算法评估</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>排序算法评估</h1>
+        <div class="header-icons">
+            <span class="material-icons-outlined">settings</span>
+            <span class="material-icons-outlined">menu</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="tabs">
+            <div class="tab active" data-algorithm="insertion">
+                <span class="material-icons-outlined">format_line_spacing</span>
+                <span>插入排序</span>
+            </div>
+            <div class="tab" data-algorithm="quick">
+                <span class="material-icons-outlined">bolt</span>
+                <span>快速排序</span>
+            </div>
+            <div class="tab" data-algorithm="merge">
+                <span class="material-icons-outlined">call_split</span>
+                <span>归并排序</span>
+            </div>
+        </div>
+
+        <section class="visualization-section">
+            <div class="visualization-header">
+                <h2>算法可视化</h2>
+                <div class="counter">步骤: <span id="step-counter">0</span></div>
+                <div class="operation" id="current-operation">选择一个数据集开始</div>
+            </div>
+            <div class="visualization-container" id="visualization-area">
+                <!-- 排序可视化将在这里动态生成 -->
+            </div>
+            <div class="controls">
+                <div class="dataset-selector">
+                    <label for="dataset-select">数据集:</label>
+                    <select id="dataset-select">
+                        <option value="small-random">小型随机数据 (10个元素)</option>
+                        <option value="small-sorted">小型已排序数据 (10个元素)</option>
+                        <option value="small-reverse">小型倒序数据 (10个元素)</option>
+                        <option value="medium-random">中型随机数据 (20个元素)</option>
+                    </select>
+                </div>
+                <div class="playback-controls">
+                    <button id="reset-btn">
+                        <span class="material-icons-outlined">restart_alt</span>
+                    </button>
+                    <button id="play-btn">
+                        <span class="material-icons-outlined">play_arrow</span>
+                    </button>
+                    <button id="step-btn">
+                        <span class="material-icons-outlined">skip_next</span>
+                    </button>
+                </div>
+                <div class="speed-control">
+                    <label for="speed-slider">速度:</label>
+                    <input type="range" id="speed-slider" min="1" max="10" value="5">
+                </div>
+            </div>
+        </section>
+
+        <section class="performance-section">
+            <h2>性能对比</h2>
+            <div class="chart-container">
+                <canvas id="performance-chart"></canvas>
+            </div>
+            <div class="performance-table-container">
+                <table class="performance-table">
+                    <thead>
+                        <tr>
+                            <th>数据集</th>
+                            <th>插入排序 (ms)</th>
+                            <th>快速排序 (ms)</th>
+                            <th>归并排序 (ms)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1000places_sorted</td>
+                            <td>0.7209</td>
+                            <td>7.1515</td>
+                            <td>0.4774</td>
+                        </tr>
+                        <tr>
+                            <td>1000places_random</td>
+                            <td>2.4313</td>
+                            <td>0.2031</td>
+                            <td>0.2206</td>
+                        </tr>
+                        <tr>
+                            <td>10000places_sorted</td>
+                            <td>0.2419</td>
+                            <td>171.752</td>
+                            <td>1.5111</td>
+                        </tr>
+                        <tr>
+                            <td>10000places_random</td>
+                            <td>73.7628</td>
+                            <td>2.008</td>
+                            <td>3.2734</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="algorithm-details-section" id="algorithm-details">
+            <h2>算法详情</h2>
+            <div class="algorithm-description">
+                <h3 id="algorithm-title">插入排序</h3>
+                <p id="algorithm-description">插入排序是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。</p>
+                
+                <div class="complexity-cards">
+                    <div class="complexity-card">
+                        <h4>时间复杂度</h4>
+                        <p>最佳情况: <span class="highlight">O(n)</span></p>
+                        <p>平均情况: <span class="highlight">O(n²)</span></p>
+                        <p>最坏情况: <span class="highlight">O(n²)</span></p>
+                    </div>
+                    <div class="complexity-card">
+                        <h4>空间复杂度</h4>
+                        <p><span class="highlight">O(1)</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="code-block">
+                <pre><code class="java">private static void insertionSort(String[] arr) {
+    for (int i = 1; i < arr.length; i++) {
+        String key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j].compareTo(key) > 0) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}</code></pre>
+            </div>
+            
+            <div class="application-scenarios">
+                <h3>应用场景分析</h3>
+                <div class="scenario-cards">
+                    <div class="scenario-card">
+                        <h4><span class="material-icons-outlined good">check_circle_outline</span> 小数据集</h4>
+                        <p>对于小型数据集，插入排序性能良好且实现简单。</p>
+                    </div>
+                    <div class="scenario-card">
+                        <h4><span class="material-icons-outlined good">check_circle_outline</span> 几乎已排序数据</h4>
+                        <p>当数据已经接近排序状态时，插入排序接近线性时间表现。</p>
+                    </div>
+                    <div class="scenario-card">
+                        <h4><span class="material-icons-outlined good">check_circle_outline</span> 内存受限环境</h4>
+                        <p>由于其O(1)的空间复杂度，非常适合嵌入式系统等内存受限环境。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2023 排序算法评估项目</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html> 
