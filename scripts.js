@@ -170,23 +170,32 @@ const performanceData = {
         {
             label: '插入排序',
             data: [0.7209, 2.4313, 0.2419, 73.7628],
-            backgroundColor: '#4285F4',
+            backgroundColor: 'rgba(66, 133, 244, 0.7)',
             borderColor: '#4285F4',
-            borderWidth: 1
+            borderWidth: 1,
+            borderRadius: 4,
+            barThickness: 16,
+            maxBarThickness: 20
         },
         {
             label: '快速排序',
             data: [7.1515, 0.2031, 171.752, 2.008],
-            backgroundColor: '#34C759',
+            backgroundColor: 'rgba(52, 199, 89, 0.7)',
             borderColor: '#34C759',
-            borderWidth: 1
+            borderWidth: 1,
+            borderRadius: 4,
+            barThickness: 16,
+            maxBarThickness: 20
         },
         {
             label: '归并排序',
             data: [0.4774, 0.2206, 1.5111, 3.2734],
-            backgroundColor: '#AF52DE',
+            backgroundColor: 'rgba(175, 82, 222, 0.7)',
             borderColor: '#AF52DE',
-            borderWidth: 1
+            borderWidth: 1,
+            borderRadius: 4,
+            barThickness: 16,
+            maxBarThickness: 20
         }
     ]
 };
@@ -687,42 +696,134 @@ function startPlayback() {
 function initializeChart() {
     const ctx = document.getElementById('performance-chart').getContext('2d');
     
+    // 创建自定义图例
+    const chartContainer = document.querySelector('.chart-container');
+    const legendDiv = document.createElement('div');
+    legendDiv.className = 'chart-legend';
+    legendDiv.innerHTML = `
+        <div class="legend-item">
+            <span class="legend-color insertion-color"></span>
+            <span>插入排序</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color quick-color"></span>
+            <span>快速排序</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color merge-color"></span>
+            <span>归并排序</span>
+        </div>
+    `;
+    chartContainer.insertAdjacentElement('beforebegin', legendDiv);
+    
+    // 添加表格标题
+    const tableContainer = document.querySelector('.performance-table-container');
+    const tableCaption = document.createElement('div');
+    tableCaption.className = 'table-caption';
+    tableCaption.textContent = '表1. 排序算法性能对比（单位：毫秒）';
+    tableContainer.insertAdjacentElement('beforebegin', tableCaption);
+    
     new Chart(ctx, {
         type: 'bar',
         data: performanceData,
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: '耗时 (毫秒)'
-                    },
-                    ticks: {
-                        callback: function(value) {
-                            return value + ' ms';
-                        }
-                    }
+            plugins: {
+                legend: {
+                    display: false // 隐藏默认图例，使用自定义图例
                 },
-                x: {
-                    title: {
-                        display: true,
-                        text: '数据集'
+                tooltip: {
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                    titleColor: '#333',
+                    bodyColor: '#555',
+                    borderColor: '#ddd',
+                    borderWidth: 1,
+                    cornerRadius: 8,
+                    padding: 12,
+                    boxPadding: 6,
+                    bodyFont: {
+                        family: 'Roboto, sans-serif'
+                    },
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.parsed.y.toFixed(4) + ' ms';
+                        }
                     }
                 }
             },
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return context.dataset.label + ': ' + context.parsed.y + ' ms';
-                        }
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        font: {
+                            family: 'Roboto, sans-serif',
+                            size: 12
+                        },
+                        color: '#555555'
+                    },
+                    title: {
+                        display: true,
+                        text: '数据集',
+                        font: {
+                            family: 'Roboto, sans-serif',
+                            size: 14,
+                            weight: 'normal'
+                        },
+                        padding: {top: 10, bottom: 0},
+                        color: '#333333'
                     }
+                },
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: '#f0f0f0'
+                    },
+                    ticks: {
+                        font: {
+                            family: 'Roboto, sans-serif',
+                            size: 12
+                        },
+                        color: '#555555',
+                        callback: function(value) {
+                            if (value >= 1000) {
+                                return (value / 1000).toFixed(1) + 's';
+                            }
+                            return value + 'ms';
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '耗时 (对数刻度)',
+                        font: {
+                            family: 'Roboto, sans-serif',
+                            size: 14,
+                            weight: 'normal'
+                        },
+                        padding: {top: 0, bottom: 10},
+                        color: '#333333'
+                    },
+                    type: 'logarithmic',
+                    min: 0.1 // 最小值设为0.1ms，使用对数刻度
+                }
+            },
+            animation: {
+                duration: 2000,
+                easing: 'easeOutQuart'
+            },
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 20,
+                    top: 20,
+                    bottom: 10
+                }
+            },
+            elements: {
+                bar: {
+                    borderWidth: 1.5
                 }
             }
         }
