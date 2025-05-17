@@ -1,4 +1,4 @@
-// 全局变量
+// Global variables
 let currentAlgorithm = 'insertion';
 let dataArray = [];
 let sortingSteps = [];
@@ -7,11 +7,11 @@ let isPlaying = false;
 let playbackSpeed = 5;
 let playbackInterval;
 
-// 算法详情数据
+// Algorithm details data
 const algorithmDetails = {
     insertion: {
-        title: '插入排序',
-        description: '插入排序是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。',
+        title: 'Insertion Sort',
+        description: 'Insertion sort is a simple and intuitive sorting algorithm. It works by building a sorted sequence and for unsorted data, it scans from the back to the front in the sorted sequence to find the appropriate position and insert.',
         timeComplexity: {
             best: 'O(n)',
             average: 'O(n²)',
@@ -31,22 +31,22 @@ const algorithmDetails = {
 }`,
         scenarios: [
             {
-                title: '小数据集',
-                description: '对于小型数据集，插入排序性能良好且实现简单。'
+                title: 'Small Datasets',
+                description: 'Insertion sort performs well and is simple to implement for small datasets.'
             },
             {
-                title: '几乎已排序数据',
-                description: '当数据已经接近排序状态时，插入排序接近线性时间表现。'
+                title: 'Nearly Sorted Data',
+                description: 'When data is already close to being sorted, insertion sort approaches linear time performance.'
             },
             {
-                title: '内存受限环境',
-                description: '由于其O(1)的空间复杂度，非常适合嵌入式系统等内存受限环境。'
+                title: 'Memory Constrained Environments',
+                description: 'With O(1) space complexity, it\'s very suitable for embedded systems and other memory-constrained environments.'
             }
         ]
     },
     quick: {
-        title: '快速排序',
-        description: '快速排序是一种分治算法，它将一个数组分成两个子数组，然后递归地对子数组进行排序。由于其平均情况下O(n log n)的性能和高效的原地排序，它是实际应用中最常用的排序算法之一。',
+        title: 'Quick Sort',
+        description: 'Quick sort is a divide and conquer algorithm that divides an array into two subarrays, then recursively sorts the subarrays. Due to its O(n log n) performance in average case and efficient in-place sorting, it is one of the most commonly used sorting algorithms in practical applications.',
         timeComplexity: {
             best: 'O(n log n)',
             average: 'O(n log n)',
@@ -79,22 +79,22 @@ private static int partition(String[] arr, int low, int high) {
 }`,
         scenarios: [
             {
-                title: '大数据集',
-                description: '对于大规模随机数据，快速排序表现出色，通常是最佳选择。'
+                title: 'Large Datasets',
+                description: 'For large-scale random data, quick sort performs excellently and is usually the best choice.'
             },
             {
-                title: '原地排序需求',
-                description: '快速排序是原地排序算法，不需要额外的数组空间。'
+                title: 'In-place Sorting Needs',
+                description: 'Quick sort is an in-place sorting algorithm that doesn\'t require additional array space.'
             },
             {
-                title: '平均性能要求',
-                description: '在大多数实际应用中，快速排序的平均性能是最好的。'
+                title: 'Average Performance Requirements',
+                description: 'In most practical applications, quick sort has the best average performance.'
             }
         ]
     },
     merge: {
-        title: '归并排序',
-        description: '归并排序是一种分治算法，它将数组分成两半，递归地对它们排序，然后合并两个有序的子数组。归并排序是稳定的排序算法，性能稳定但需要额外的空间。',
+        title: 'Merge Sort',
+        description: 'Merge sort is a divide and conquer algorithm that splits the array in half, recursively sorts them, and then merges the two sorted subarrays. Merge sort is a stable sorting algorithm with stable performance but requires additional space.',
         timeComplexity: {
             best: 'O(n log n)',
             average: 'O(n log n)',
@@ -148,27 +148,27 @@ private static void merge(String[] arr, int left, int mid, int right) {
 }`,
         scenarios: [
             {
-                title: '稳定性要求',
-                description: '归并排序是稳定的排序算法，保持相等元素的原始顺序。'
+                title: 'Stability Requirements',
+                description: 'Merge sort is a stable sorting algorithm that preserves the original order of equal elements.'
             },
             {
-                title: '重复值数据集',
-                description: '对于包含大量重复值的数据，归并排序性能稳定。'
+                title: 'Datasets with Duplicate Values',
+                description: 'For data containing a large number of duplicate values, merge sort provides stable performance.'
             },
             {
-                title: '可预测性能需求',
-                description: '归并排序在所有情况下都保持O(n log n)的时间复杂度，性能可预测。'
+                title: 'Predictable Performance Needs',
+                description: 'Merge sort maintains O(n log n) time complexity in all cases, with predictable performance.'
             }
         ]
     }
 };
 
-// 性能数据
+// Performance data
 const performanceData = {
     labels: ['1000places_sorted', '1000places_random', '10000places_sorted', '10000places_random'],
     datasets: [
         {
-            label: '插入排序',
+            label: 'Insertion Sort',
             data: [0.7209, 2.4313, 0.2419, 73.7628],
             backgroundColor: 'rgba(66, 133, 244, 0.7)',
             borderColor: '#4285F4',
@@ -178,7 +178,7 @@ const performanceData = {
             maxBarThickness: 20
         },
         {
-            label: '快速排序',
+            label: 'Quick Sort',
             data: [7.1515, 0.2031, 171.752, 2.008],
             backgroundColor: 'rgba(52, 199, 89, 0.7)',
             borderColor: '#34C759',
@@ -188,7 +188,7 @@ const performanceData = {
             maxBarThickness: 20
         },
         {
-            label: '归并排序',
+            label: 'Merge Sort',
             data: [0.4774, 0.2206, 1.5111, 3.2734],
             backgroundColor: 'rgba(175, 82, 222, 0.7)',
             borderColor: '#AF52DE',
@@ -200,7 +200,7 @@ const performanceData = {
     ]
 };
 
-// 预设数据集
+// Pre-set datasets
 const datasets = {
     'small-random': [9, 5, 7, 3, 1, 8, 6, 2, 4, 0],
     'small-sorted': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -208,9 +208,9 @@ const datasets = {
     'medium-random': [18, 5, 12, 9, 3, 10, 15, 6, 1, 17, 4, 11, 8, 14, 7, 16, 13, 2, 19, 0]
 };
 
-// 页面加载时初始化
+// Page load initialization
 document.addEventListener('DOMContentLoaded', () => {
-    // 绑定Tab切换事件
+    // Bind Tab switch event
     const tabs = document.querySelectorAll('.tab');
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 绑定数据集选择事件
+    // Bind dataset selection event
     const datasetSelect = document.getElementById('dataset-select');
     datasetSelect.addEventListener('change', () => {
         resetVisualization();
@@ -227,12 +227,12 @@ document.addEventListener('DOMContentLoaded', () => {
         updateVisualization();
     });
 
-    // 绑定控制按钮事件
+    // Bind control button events
     document.getElementById('reset-btn').addEventListener('click', resetVisualization);
     document.getElementById('play-btn').addEventListener('click', togglePlayback);
     document.getElementById('step-btn').addEventListener('click', stepForward);
 
-    // 绑定速度滑块事件
+    // Bind speed slider event
     document.getElementById('speed-slider').addEventListener('input', (e) => {
         playbackSpeed = parseInt(e.target.value);
         if (isPlaying) {
@@ -241,21 +241,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 初始化图表
+    // Initialize chart
     initializeChart();
 
-    // 初始化第一个算法
+    // Initialize first algorithm
     selectAlgorithm('insertion');
     resetVisualization();
     generateSortingSteps();
     updateVisualization();
 });
 
-// 选择算法
+// Select algorithm
 function selectAlgorithm(algorithm) {
     currentAlgorithm = algorithm;
     
-    // 更新Tab样式
+    // Update Tab style
     document.querySelectorAll('.tab').forEach(tab => {
         if (tab.getAttribute('data-algorithm') === algorithm) {
             tab.classList.add('active');
@@ -264,40 +264,40 @@ function selectAlgorithm(algorithm) {
         }
     });
     
-    // 更新算法详情
+    // Update algorithm details
     updateAlgorithmDetails();
     
-    // 重置可视化
+    // Reset visualization
     resetVisualization();
     generateSortingSteps();
     updateVisualization();
 }
 
-// 更新算法详情
+// Update algorithm details
 function updateAlgorithmDetails() {
     const details = algorithmDetails[currentAlgorithm];
     
     document.getElementById('algorithm-title').textContent = details.title;
     document.getElementById('algorithm-description').textContent = details.description;
     
-    // 更新时间复杂度
+    // Update time complexity
     const timeComplexityHtml = `
-        <h4>时间复杂度</h4>
-        <p>最佳情况: <span class="highlight">${details.timeComplexity.best}</span></p>
-        <p>平均情况: <span class="highlight">${details.timeComplexity.average}</span></p>
-        <p>最坏情况: <span class="highlight">${details.timeComplexity.worst}</span></p>
+        <h4>Time Complexity</h4>
+        <p>Best case: <span class="highlight">${details.timeComplexity.best}</span></p>
+        <p>Average case: <span class="highlight">${details.timeComplexity.average}</span></p>
+        <p>Worst case: <span class="highlight">${details.timeComplexity.worst}</span></p>
     `;
     
-    // 更新空间复杂度
+    // Update space complexity
     const spaceComplexityHtml = `
-        <h4>空间复杂度</h4>
+        <h4>Space Complexity</h4>
         <p><span class="highlight">${details.spaceComplexity}</span></p>
     `;
     
-    // 更新代码
+    // Update code
     const codeHtml = `<pre><code class="java">${details.code}</code></pre>`;
     
-    // 更新应用场景
+    // Update application scenarios
     let scenariosHtml = '';
     details.scenarios.forEach(scenario => {
         scenariosHtml += `
@@ -308,7 +308,7 @@ function updateAlgorithmDetails() {
         `;
     });
     
-    // 插入到页面
+    // Insert into page
     document.querySelector('.complexity-cards').innerHTML = `
         <div class="complexity-card">${timeComplexityHtml}</div>
         <div class="complexity-card">${spaceComplexityHtml}</div>
@@ -318,27 +318,27 @@ function updateAlgorithmDetails() {
     document.querySelector('.scenario-cards').innerHTML = scenariosHtml;
 }
 
-// 重置可视化
+// Reset visualization
 function resetVisualization() {
-    // 停止播放
+    // Stop playback
     if (isPlaying) {
         togglePlayback();
     }
     
-    // 重置状态
+    // Reset state
     currentStepIndex = 0;
     document.getElementById('step-counter').textContent = '0';
-    document.getElementById('current-operation').textContent = '准备开始排序';
+    document.getElementById('current-operation').textContent = 'Ready to start sorting';
     
-    // 获取当前选择的数据集
+    // Get current selected dataset
     const datasetSelect = document.getElementById('dataset-select');
     dataArray = [...datasets[datasetSelect.value]];
     
-    // 更新播放按钮图标
+    // Update playback button icon
     document.querySelector('#play-btn .material-icons-outlined').textContent = 'play_arrow';
 }
 
-// 生成排序步骤
+// Generate sorting steps
 function generateSortingSteps() {
     sortingSteps = [];
     const arrayCopy = [...dataArray];
@@ -352,11 +352,11 @@ function generateSortingSteps() {
     }
 }
 
-// 插入排序(带步骤记录)
+// Insertion sort (with step recording)
 function insertionSortWithSteps(arr) {
     sortingSteps.push({
         array: [...arr],
-        message: '开始插入排序',
+        message: 'Starting insertion sort',
         comparing: [],
         sorted: [0]
     });
@@ -365,7 +365,7 @@ function insertionSortWithSteps(arr) {
         const key = arr[i];
         sortingSteps.push({
             array: [...arr],
-            message: `选择索引 ${i} 处的元素 ${key} 作为当前元素`,
+            message: `Selecting element at index ${i} with value ${key} as current element`,
             comparing: [i],
             sorted: Array.from({length: i}, (_, idx) => idx)
         });
@@ -374,7 +374,7 @@ function insertionSortWithSteps(arr) {
         while (j >= 0 && arr[j] > key) {
             sortingSteps.push({
                 array: [...arr],
-                message: `比较元素 ${arr[j]} 和 ${key}，${arr[j]} > ${key}，需要交换`,
+                message: `Comparing elements ${arr[j]} and ${key}, ${arr[j]} > ${key}, need to swap`,
                 comparing: [j, i],
                 sorted: Array.from({length: i}, (_, idx) => idx).filter(idx => idx !== j && idx !== j + 1)
             });
@@ -383,7 +383,7 @@ function insertionSortWithSteps(arr) {
             
             sortingSteps.push({
                 array: [...arr],
-                message: `将元素 ${arr[j]} 右移一位`,
+                message: `Shifting element ${arr[j]} one position to the right`,
                 comparing: [j, j + 1],
                 sorted: Array.from({length: i}, (_, idx) => idx).filter(idx => idx !== j && idx !== j + 1)
             });
@@ -394,7 +394,7 @@ function insertionSortWithSteps(arr) {
         arr[j + 1] = key;
         sortingSteps.push({
             array: [...arr],
-            message: `将当前元素 ${key} 插入到位置 ${j + 1}`,
+            message: `Inserting current element ${key} into position ${j + 1}`,
             comparing: [j + 1],
             sorted: Array.from({length: i + 1}, (_, idx) => idx)
         });
@@ -402,18 +402,18 @@ function insertionSortWithSteps(arr) {
     
     sortingSteps.push({
         array: [...arr],
-        message: '排序完成',
+        message: 'Sorting completed',
         comparing: [],
         sorted: Array.from({length: arr.length}, (_, idx) => idx)
     });
 }
 
-// 快速排序(带步骤记录)
+// Quick sort (with step recording)
 function quickSortWithSteps(arr, low, high) {
     if (low < high) {
         sortingSteps.push({
             array: [...arr],
-            message: `对子数组 [${low}..${high}] 进行快速排序`,
+            message: `Sorting subarray [${low}..${high}]`,
             comparing: [low, high],
             sorted: []
         });
@@ -421,7 +421,7 @@ function quickSortWithSteps(arr, low, high) {
         const pivotValue = arr[high];
         sortingSteps.push({
             array: [...arr],
-            message: `选择 ${pivotValue} 作为基准值`,
+            message: `Selecting ${pivotValue} as pivot value`,
             comparing: [high],
             sorted: []
         });
@@ -430,7 +430,7 @@ function quickSortWithSteps(arr, low, high) {
         for (let j = low; j < high; j++) {
             sortingSteps.push({
                 array: [...arr],
-                message: `比较元素 ${arr[j]} 和基准值 ${pivotValue}`,
+                message: `Comparing element ${arr[j]} with pivot value ${pivotValue}`,
                 comparing: [j, high],
                 sorted: []
             });
@@ -440,7 +440,7 @@ function quickSortWithSteps(arr, low, high) {
                 
                 sortingSteps.push({
                     array: [...arr],
-                    message: `${arr[j]} <= ${pivotValue}，交换 ${arr[i]} 和 ${arr[j]}`,
+                    message: `${arr[j]} <= ${pivotValue}, swapping ${arr[i]} and ${arr[j]}`,
                     comparing: [i, j],
                     sorted: []
                 });
@@ -451,7 +451,7 @@ function quickSortWithSteps(arr, low, high) {
                 
                 sortingSteps.push({
                     array: [...arr],
-                    message: `交换后：${arr[i]} 和 ${arr[j]}`,
+                    message: `After swap: ${arr[i]} and ${arr[j]}`,
                     comparing: [i, j],
                     sorted: []
                 });
@@ -464,7 +464,7 @@ function quickSortWithSteps(arr, low, high) {
         
         sortingSteps.push({
             array: [...arr],
-            message: `将基准值 ${pivotValue} 放置到正确位置 ${i + 1}`,
+            message: `Placing pivot value ${pivotValue} into correct position ${i + 1}`,
             comparing: [i + 1, high],
             sorted: [i + 1]
         });
@@ -476,19 +476,19 @@ function quickSortWithSteps(arr, low, high) {
     } else if (low === high) {
         sortingSteps.push({
             array: [...arr],
-            message: `索引 ${low} 处的单元素子数组已排序`,
+            message: `Single-element subarray at index ${low} is already sorted`,
             comparing: [],
             sorted: [low]
         });
     }
 }
 
-// 归并排序(带步骤记录)
+// Merge sort (with step recording)
 function mergeSortWithSteps(arr, left, right) {
     if (left < right) {
         sortingSteps.push({
             array: [...arr],
-            message: `对子数组 [${left}..${right}] 进行归并排序`,
+            message: `Sorting subarray [${left}..${right}]`,
             comparing: [left, right],
             sorted: []
         });
@@ -497,7 +497,7 @@ function mergeSortWithSteps(arr, left, right) {
         
         sortingSteps.push({
             array: [...arr],
-            message: `分割为 [${left}..${mid}] 和 [${mid + 1}..${right}]`,
+            message: `Splitting into [${left}..${mid}] and [${mid + 1}..${right}]`,
             comparing: [left, mid, right],
             sorted: []
         });
@@ -505,7 +505,7 @@ function mergeSortWithSteps(arr, left, right) {
         mergeSortWithSteps(arr, left, mid);
         mergeSortWithSteps(arr, mid + 1, right);
         
-        // 合并两个子数组
+        // Merge two subarrays
         const n1 = mid - left + 1;
         const n2 = right - mid;
         const L = [];
@@ -513,7 +513,7 @@ function mergeSortWithSteps(arr, left, right) {
         
         sortingSteps.push({
             array: [...arr],
-            message: `准备合并 [${left}..${mid}] 和 [${mid + 1}..${right}]`,
+            message: `Preparing to merge [${left}..${mid}] and [${mid + 1}..${right}]`,
             comparing: [left, mid, mid + 1, right],
             sorted: []
         });
@@ -528,7 +528,7 @@ function mergeSortWithSteps(arr, left, right) {
         
         sortingSteps.push({
             array: [...arr],
-            message: `左子数组: [${L.join(', ')}], 右子数组: [${R.join(', ')}]`,
+            message: `Left subarray: [${L.join(', ')}], Right subarray: [${R.join(', ')}]`,
             comparing: [],
             sorted: []
         });
@@ -538,7 +538,7 @@ function mergeSortWithSteps(arr, left, right) {
         while (i < n1 && j < n2) {
             sortingSteps.push({
                 array: [...arr],
-                message: `比较 ${L[i]} 和 ${R[j]}`,
+                message: `Comparing ${L[i]} and ${R[j]}`,
                 comparing: [left + i, mid + 1 + j],
                 sorted: []
             });
@@ -548,7 +548,7 @@ function mergeSortWithSteps(arr, left, right) {
                 
                 sortingSteps.push({
                     array: [...arr],
-                    message: `${L[i]} <= ${R[j]}，取左子数组的元素`,
+                    message: `${L[i]} <= ${R[j]}, taking element from left subarray`,
                     comparing: [left + i],
                     sorted: []
                 });
@@ -559,7 +559,7 @@ function mergeSortWithSteps(arr, left, right) {
                 
                 sortingSteps.push({
                     array: [...arr],
-                    message: `${L[i]} > ${R[j]}，取右子数组的元素`,
+                    message: `${L[i]} > ${R[j]}, taking element from right subarray`,
                     comparing: [mid + 1 + j],
                     sorted: []
                 });
@@ -575,7 +575,7 @@ function mergeSortWithSteps(arr, left, right) {
             if (n1 > 1 || n2 > 1) {
                 sortingSteps.push({
                     array: [...arr],
-                    message: `复制左子数组剩余元素 ${L[i]}`,
+                    message: `Copying remaining elements from left subarray ${L[i]}`,
                     comparing: [left + i],
                     sorted: []
                 });
@@ -591,7 +591,7 @@ function mergeSortWithSteps(arr, left, right) {
             if (n1 > 1 || n2 > 1) {
                 sortingSteps.push({
                     array: [...arr],
-                    message: `复制右子数组剩余元素 ${R[j]}`,
+                    message: `Copying remaining elements from right subarray ${R[j]}`,
                     comparing: [mid + 1 + j],
                     sorted: []
                 });
@@ -603,33 +603,33 @@ function mergeSortWithSteps(arr, left, right) {
         
         sortingSteps.push({
             array: [...arr],
-            message: `子数组 [${left}..${right}] 合并完成`,
+            message: `Subarray [${left}..${right}] merge completed`,
             comparing: [],
             sorted: Array.from({length: right - left + 1}, (_, idx) => left + idx)
         });
     }
 }
 
-// 更新可视化
+// Update visualization
 function updateVisualization() {
     if (sortingSteps.length === 0) return;
     
     const step = sortingSteps[currentStepIndex];
     const visualizationArea = document.getElementById('visualization-area');
-    const maxValue = Math.max(...dataArray) + 1; // +1 为了给0值元素也能显示高度
+    const maxValue = Math.max(...dataArray) + 1; // +1 for 0 value elements to display height
     
-    // 清空可视化区域
+    // Clear visualization area
     visualizationArea.innerHTML = '';
     
-    // 绘制条形图
+    // Draw bar chart
     step.array.forEach((value, index) => {
         const bar = document.createElement('div');
         bar.className = 'bar';
-        bar.style.height = `${(value + 1) / maxValue * 200}px`; // 标准化高度
+        bar.style.height = `${(value + 1) / maxValue * 200}px`; // Standardized height
         bar.style.width = `${Math.floor(100 / step.array.length)}%`;
         bar.style.maxWidth = '50px';
         
-        // 添加元素值标签
+        // Add element value label
         const label = document.createElement('div');
         label.textContent = value;
         label.style.position = 'absolute';
@@ -639,7 +639,7 @@ function updateVisualization() {
         label.style.fontSize = '12px';
         bar.appendChild(label);
         
-        // 设置条形状态
+        // Set bar status
         if (step.comparing.includes(index)) {
             bar.classList.add('comparing');
         } else if (step.sorted.includes(index)) {
@@ -650,25 +650,25 @@ function updateVisualization() {
         visualizationArea.appendChild(bar);
     });
     
-    // 更新步骤计数器和操作说明
+    // Update step counter and operation description
     document.getElementById('step-counter').textContent = currentStepIndex;
     document.getElementById('current-operation').textContent = step.message;
 }
 
-// 向前一步
+// Forward one step
 function stepForward() {
     if (currentStepIndex < sortingSteps.length - 1) {
         currentStepIndex++;
         updateVisualization();
     } else {
-        // 排序完成，停止播放
+        // Sorting completed, stop playback
         if (isPlaying) {
             togglePlayback();
         }
     }
 }
 
-// 切换播放/暂停
+// Toggle play/pause
 function togglePlayback() {
     isPlaying = !isPlaying;
     
@@ -681,46 +681,46 @@ function togglePlayback() {
     }
 }
 
-// 开始播放动画
+// Start playback animation
 function startPlayback() {
     playbackInterval = setInterval(() => {
         if (currentStepIndex < sortingSteps.length - 1) {
             stepForward();
         } else {
-            togglePlayback(); // 排序完成，停止播放
+            togglePlayback(); // Sorting completed, stop playback
         }
     }, 1000 / playbackSpeed);
 }
 
-// 初始化图表
+// Initialize chart
 function initializeChart() {
     const ctx = document.getElementById('performance-chart').getContext('2d');
     
-    // 创建自定义图例
+    // Create custom legend
     const chartContainer = document.querySelector('.chart-container');
     const legendDiv = document.createElement('div');
     legendDiv.className = 'chart-legend';
     legendDiv.innerHTML = `
         <div class="legend-item">
             <span class="legend-color insertion-color"></span>
-            <span>插入排序</span>
+            <span>Insertion Sort</span>
         </div>
         <div class="legend-item">
             <span class="legend-color quick-color"></span>
-            <span>快速排序</span>
+            <span>Quick Sort</span>
         </div>
         <div class="legend-item">
             <span class="legend-color merge-color"></span>
-            <span>归并排序</span>
+            <span>Merge Sort</span>
         </div>
     `;
     chartContainer.insertAdjacentElement('beforebegin', legendDiv);
     
-    // 添加表格标题
+    // Add table caption
     const tableContainer = document.querySelector('.performance-table-container');
     const tableCaption = document.createElement('div');
     tableCaption.className = 'table-caption';
-    tableCaption.textContent = '表1. 排序算法性能对比（单位：毫秒）';
+    tableCaption.textContent = 'Table 1. Sorting Algorithm Performance Comparison (Unit: Milliseconds)';
     tableContainer.insertAdjacentElement('beforebegin', tableCaption);
     
     new Chart(ctx, {
@@ -731,7 +731,7 @@ function initializeChart() {
             maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    display: false // 隐藏默认图例，使用自定义图例
+                    display: false // Hide default legend, use custom legend
                 },
                 tooltip: {
                     backgroundColor: 'rgba(255, 255, 255, 0.9)',
@@ -766,7 +766,7 @@ function initializeChart() {
                     },
                     title: {
                         display: true,
-                        text: '数据集',
+                        text: 'Dataset',
                         font: {
                             family: 'Roboto, sans-serif',
                             size: 14,
@@ -796,7 +796,7 @@ function initializeChart() {
                     },
                     title: {
                         display: true,
-                        text: '耗时 (对数刻度)',
+                        text: 'Time (Logarithmic Scale)',
                         font: {
                             family: 'Roboto, sans-serif',
                             size: 14,
@@ -806,7 +806,7 @@ function initializeChart() {
                         color: '#333333'
                     },
                     type: 'logarithmic',
-                    min: 0.1 // 最小值设为0.1ms，使用对数刻度
+                    min: 0.1 // Minimum value set to 0.1ms, use logarithmic scale
                 }
             },
             animation: {

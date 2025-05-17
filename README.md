@@ -1,32 +1,32 @@
-# 排序算法评估与可视化
+# Sorting Algorithm Evaluation and Visualization
 
-这个项目对三种经典排序算法（插入排序、快速排序和归并排序）在不同数据集上的性能进行了评估与可视化。
+This project evaluates and visualizes the performance of three classic sorting algorithms (Insertion Sort, Quick Sort, and Merge Sort) on different datasets.
 
-## 项目内容
+## Project Contents
 
-- **排序算法实现**：在`SortingEvaluator.java`中实现了三种排序算法
-- **性能评估报告**：`排序算法评估报告.md`详细分析了各算法在不同场景下的性能特点
-- **交互式可视化工具**：通过网页界面直观展示排序算法的工作过程
+- **Sorting Algorithm Implementation**: Three sorting algorithms are implemented in `SortingEvaluator.java`
+- **Performance Evaluation Report**: `Sorting_Algorithm_Evaluation_Report.md` provides detailed analysis of each algorithm's performance characteristics in different scenarios
+- **Interactive Visualization Tool**: Intuitively demonstrates the working process of sorting algorithms through a web interface
 
-## 在线演示
+## Online Demo
 
-访问 [https://zwdommy.github.io/TASKC/](https://zwdommy.github.io/TASKC/) 查看排序算法可视化演示。
+Visit [https://zwdommy.github.io/TASKC/](https://zwdommy.github.io/TASKC/) to view the sorting algorithm visualization demo.
 
-## 功能特点
+## Features
 
-- 支持三种排序算法的逐步可视化
-- 提供多种预设数据集用于演示
-- 包含详细的性能对比图表和数据
-- 现代简约的界面设计
+- Supports step-by-step visualization of three sorting algorithms
+- Provides multiple preset datasets for demonstration
+- Includes detailed performance comparison charts and data
+- Modern and minimalist interface design
 
-## 本地运行
+## Local Execution
 
-1. 克隆本仓库
-2. 打开`index.html`文件即可在浏览器中运行可视化工具
-3. 运行`SortingEvaluator.java`可重新评估算法性能
+1. Clone this repository
+2. Open the `index.html` file to run the visualization tool in your browser
+3. Run `SortingEvaluator.java` to re-evaluate algorithm performance
 
-## 技术栈
+## Tech Stack
 
-- 前端：HTML, CSS, JavaScript (纯原生实现)
-- 数据可视化：Chart.js
-- 算法实现：Java 
+- Frontend: HTML, CSS, JavaScript (pure native implementation)
+- Data Visualization: Chart.js
+- Algorithm Implementation: Java 
