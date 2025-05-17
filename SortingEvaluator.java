@@ -4,7 +4,7 @@ import java.util.*;
 public class SortingEvaluator {
     
     public static void main(String[] args) {
-        // 数据集路径
+        // Dataset paths
         String[] dataFiles = {
             "data/1000places_sorted.csv",
             "data/1000places_random.csv",
@@ -19,63 +19,63 @@ public class SortingEvaluator {
             "10000places_random"
         };
         
-        // 结果保存
-        long[][] results = new long[4][3]; // [数据集][算法]
+        // Results storage
+        long[][] results = new long[4][3]; // [dataset][algorithm]
         
-        // 测试每个数据集
+        // Test each dataset
         for (int i = 0; i < dataFiles.length; i++) {
             String[] data = readData(dataFiles[i]);
-            System.out.println("测试数据集: " + dataFiles[i] + " (大小: " + data.length + ")");
+            System.out.println("Testing dataset: " + dataFiles[i] + " (Size: " + data.length + ")");
             
-            // 插入排序测试
+            // Insertion sort test
             String[] dataCopy1 = Arrays.copyOf(data, data.length);
             long startTime = System.nanoTime();
             insertionSort(dataCopy1);
             long endTime = System.nanoTime();
             results[i][0] = endTime - startTime;
-            System.out.println("插入排序完成, 用时: " + results[i][0] + " ns (" + (results[i][0] / 1_000_000.0) + " ms)");
+            System.out.println("Insertion sort completed, time: " + results[i][0] + " ns (" + (results[i][0] / 1_000_000.0) + " ms)");
             
-            // 快速排序测试
+            // Quick sort test
             String[] dataCopy2 = Arrays.copyOf(data, data.length);
             startTime = System.nanoTime();
             quickSort(dataCopy2, 0, dataCopy2.length - 1);
             endTime = System.nanoTime();
             results[i][1] = endTime - startTime;
-            System.out.println("快速排序完成, 用时: " + results[i][1] + " ns (" + (results[i][1] / 1_000_000.0) + " ms)");
+            System.out.println("Quick sort completed, time: " + results[i][1] + " ns (" + (results[i][1] / 1_000_000.0) + " ms)");
             
-            // 归并排序测试
+            // Merge sort test
             String[] dataCopy3 = Arrays.copyOf(data, data.length);
             startTime = System.nanoTime();
             mergeSort(dataCopy3, 0, dataCopy3.length - 1);
             endTime = System.nanoTime();
             results[i][2] = endTime - startTime;
-            System.out.println("归并排序完成, 用时: " + results[i][2] + " ns (" + (results[i][2] / 1_000_000.0) + " ms)");
+            System.out.println("Merge sort completed, time: " + results[i][2] + " ns (" + (results[i][2] / 1_000_000.0) + " ms)");
             
             System.out.println();
         }
         
-        // 打印结果表格 (纳秒)
-        System.out.println("结果表格 (纳秒):");
-        System.out.println("数据集\t插入排序 (ns)\t快速排序 (ns)\t归并排序 (ns)");
+        // Print results table (nanoseconds)
+        System.out.println("Results table (nanoseconds):");
+        System.out.println("Dataset\tInsertion Sort (ns)\tQuick Sort (ns)\tMerge Sort (ns)");
         for (int i = 0; i < datasetNames.length; i++) {
             System.out.println(datasetNames[i] + "\t" + results[i][0] + "\t" + results[i][1] + "\t" + results[i][2]);
         }
         
-        System.out.println("\n结果表格 (毫秒):");
-        System.out.println("数据集\t插入排序 (ms)\t快速排序 (ms)\t归并排序 (ms)");
+        System.out.println("\nResults table (milliseconds):");
+        System.out.println("Dataset\tInsertion Sort (ms)\tQuick Sort (ms)\tMerge Sort (ms)");
         for (int i = 0; i < datasetNames.length; i++) {
             System.out.println(datasetNames[i] + "\t" + (results[i][0] / 1_000_000.0) + "\t" + 
                               (results[i][1] / 1_000_000.0) + "\t" + (results[i][2] / 1_000_000.0));
         }
         
-        // 将结果保存到文件
+        // Save results to file
         try (PrintWriter writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream("sorting_results.txt"), "UTF-8"))) {
-            writer.println("数据集\t插入排序 (ns)\t快速排序 (ns)\t归并排序 (ns)");
+            writer.println("Dataset\tInsertion Sort (ns)\tQuick Sort (ns)\tMerge Sort (ns)");
             for (int i = 0; i < datasetNames.length; i++) {
                 writer.println(datasetNames[i] + "\t" + results[i][0] + "\t" + results[i][1] + "\t" + results[i][2]);
             }
             
-            writer.println("\n数据集\t插入排序 (ms)\t快速排序 (ms)\t归并排序 (ms)");
+            writer.println("\nDataset\tInsertion Sort (ms)\tQuick Sort (ms)\tMerge Sort (ms)");
             for (int i = 0; i < datasetNames.length; i++) {
                 writer.println(datasetNames[i] + "\t" + (results[i][0] / 1_000_000.0) + "\t" + 
                               (results[i][1] / 1_000_000.0) + "\t" + (results[i][2] / 1_000_000.0));
@@ -85,7 +85,7 @@ public class SortingEvaluator {
         }
     }
     
-    // 读取CSV文件数据
+    // Read CSV file data
     private static String[] readData(String filename) {
         List<String> data = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -99,7 +99,7 @@ public class SortingEvaluator {
         return data.toArray(new String[0]);
     }
     
-    // 插入排序
+    // Insertion sort
     private static void insertionSort(String[] arr) {
         for (int i = 1; i < arr.length; i++) {
             String key = arr[i];
@@ -112,7 +112,7 @@ public class SortingEvaluator {
         }
     }
     
-    // 快速排序
+    // Quick sort
     private static void quickSort(String[] arr, int low, int high) {
         if (low < high) {
             int pi = partition(arr, low, high);
@@ -138,7 +138,7 @@ public class SortingEvaluator {
         return i + 1;
     }
     
-    // 归并排序
+    // Merge sort
     private static void mergeSort(String[] arr, int left, int right) {
         if (left < right) {
             int mid = left + (right - left) / 2;
